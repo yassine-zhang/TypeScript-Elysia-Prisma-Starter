@@ -1,0 +1,22 @@
+{
+  "name": "typescript-elysia-prisma-starter",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,md,ts,vue,json,css}": [
+      "prettier --write"
+    ]
+  }
+}
