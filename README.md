@@ -1,6 +1,6 @@
 # typescript-elysia-prisma-starter
 
-## environment variables
+## Environment variables
 
 项目采用dotenvx管理环境变量，你在拉取此项目后，请先修改`.env.development`和`.env.production`文件，添加你的环境变量。
 
@@ -16,16 +16,34 @@
 
 [dotenvx文档](https://dotenvx.com/)
 
-## install dependencies
+## Git Commit Code Formatting
+
+运行以下命令安装husky
+
+```bash
+bun run prepare-fallback
+```
+
+## Install dependencies
+
+> This project was created using `bun init` in bun v1.1.21. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
 ```bash
 bun install
 ```
 
-To run:
+## Prisma Configuration
 
-```bash
-bun run dev
+请先在`prisma/schema.prisma`中创建model，如下：
+
+```prisma
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
 ```
 
-This project was created using `bun init` in bun v1.1.21. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+现在你还要留意环境变量`DATABASE_URL`，他需要配置你的数据库连接字符串，请根据你的数据库类型，修改此字符串。
+
+关于binaryTargets的更多信息，请参考[Prisma文档](https://www.prisma.io/docs/orm/overview/prisma-schema-file-structure/prisma-schema-file-structure#binarytargets)。
