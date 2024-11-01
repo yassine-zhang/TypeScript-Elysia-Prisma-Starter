@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>邮箱验证码</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333333;
+      }
+      .content {
+        font-size: 14px;
+        color: #333333;
+        line-height: 1.6;
+        margin-top: 20px;
+      }
+      .content strong {
+        font-size: 22px;
+        color: #008000;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 12px;
+        color: #777777;
+        text-align: left;
+      }
+      .footer a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      @media screen and (max-width: 600px) {
+        .header {
+          font-size: 14px; /* Smaller font size for mobile */
+        }
+        .content {
+          font-size: 12px; /* Smaller font size for mobile */
+        }
+        .content strong {
+          font-size: 18px; /* Smaller font size for mobile */
+        }
+        .footer {
+          font-size: 10px; /* Adjust footer size for mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">{{USERNAME}}，你好：</div>
+      <div class="content">
+        <p>
+          你申请绑定邮箱的邮件验证码为：<strong>{{OTP}}</strong>，该验证码15分钟内有效。
+        </p>
+        <p>如果该修改邮箱邮件并不是由你主动从知慧flow请求发出，请忽略！</p>
+      </div>
+      <div class="footer">
+        <p>知慧flow - 知识“慧”聚成河，意义自然浮现</p>
+        <p><a href="https://wisflow.itcox.cn">https://wisflow.itcox.cn</a></p>
+      </div>
+    </div>
+  </body>
+</html>
