@@ -47,3 +47,11 @@ model User {
 现在你还要留意环境变量`DATABASE_URL`，他需要配置你的数据库连接字符串，请根据你的数据库类型，修改此字符串。
 
 关于binaryTargets的更多信息，请参考[Prisma文档](https://www.prisma.io/docs/orm/overview/prisma-schema-file-structure/prisma-schema-file-structure#binarytargets)。
+
+## Swagger endpoint
+
+> 该插件为Elysia 服务器生成 Swagger 端点
+
+访问/swagger将向您显示一个Scalar UI，其中包含从 Elysia 服务器生成的endpoint文档。您还可以在/swagger/json访问原始 OpenAPI 规范。
+
+项目运行后，默认访问地址：http://localhost:10010/swagger
