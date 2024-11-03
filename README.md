@@ -1,5 +1,13 @@
 # typescript-elysia-prisma-starter
 
+## Install dependencies
+
+> This project was created using `bun init` in bun v1.1.21. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+```bash
+bun install
+```
+
 ## Environment variables
 
 项目采用dotenvx管理环境变量，你在拉取此项目后，请先修改`.env.development`和`.env.production`文件，添加你的环境变量。
@@ -22,14 +30,6 @@
 
 ```bash
 bun run prepare-fallback
-```
-
-## Install dependencies
-
-> This project was created using `bun init` in bun v1.1.21. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-
-```bash
-bun install
 ```
 
 ## Prisma Configuration
@@ -55,3 +55,9 @@ model User {
 访问/swagger将向您显示一个Scalar UI，其中包含从 Elysia 服务器生成的endpoint文档。您还可以在/swagger/json访问原始 OpenAPI 规范。
 
 项目运行后，默认访问地址：http://localhost:10010/swagger
+
+## Run the project
+
+```bash
+bun run dev
+```
