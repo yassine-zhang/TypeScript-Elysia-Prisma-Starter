@@ -63,3 +63,17 @@ model User {
 ```bash
 bun run dev
 ```
+
+## Build docker image
+
+构建Docker镜像：
+
+```bash
+docker buildx build --push --platform linux/amd64 -t domain/project-name:latest .
+```
+
+运行镜像：
+
+```bash
+docker run -d -e DOTENV_PRIVATE_KEY_PRODUCTION="***" -v volume-name:/usr/src/app/media --restart unless-stopped --privileged -p 10010:7777 --name image-name  domain/project-name:latest
+```
