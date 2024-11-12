@@ -46,7 +46,9 @@ model User {
 
 现在你还要留意环境变量`DATABASE_URL`，他需要配置你的数据库连接字符串，请根据你的数据库类型，修改此字符串。
 
-关于binaryTargets的更多信息，请参考[Prisma文档](https://www.prisma.io/docs/orm/overview/prisma-schema-file-structure/prisma-schema-file-structure#binarytargets)。
+当你每次配置完`schema.prisma`，都要运行命令`bun run migrate-[dev/depl]`，一个是开发环境一个是生产环境。在运行后他会自动执行`bun run generate`这样就可以通过@prisma/client获取到类型提示信息。
+
+> 关于binaryTargets的更多信息，请参考[Prisma文档](https://www.prisma.io/docs/orm/overview/prisma-schema-file-structure/prisma-schema-file-structure#binarytargets)。
 
 ## Swagger endpoint
 
