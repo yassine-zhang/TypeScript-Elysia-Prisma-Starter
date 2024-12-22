@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { swagger } from "@elysiajs/swagger";
+import { staticPlugin } from "@elysiajs/static";
 import setup from "./setup";
 import IntegrationPlugin from "@/routes/all.routes";
 import ignoreAuthPath from "./utils/ignore-auth-path";
@@ -8,7 +8,7 @@ const PORT = Bun.env.SERVER_PORT || 7777;
 
 new Elysia()
   .use(setup)
-  .use(swagger())
+  .use(staticPlugin())
   .derive(({ headers }) => {
     const auth = headers["authorization"];
     return {
