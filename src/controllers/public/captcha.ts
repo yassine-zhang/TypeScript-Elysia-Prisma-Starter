@@ -1,5 +1,6 @@
 import SvgCaptchaFactory from "svg-captcha";
 import dayjs from "dayjs";
+import type { ApiResponse } from "@/types/response";
 
 // 将svg字符串转换为浏览器可预览的base64 image函数
 function svgToBase64(svg: string) {
@@ -13,7 +14,7 @@ const captchaMap = new Map<string, string>();
  * 获取验证码
  * @returns 包含验证码及其图形表示的对象
  */
-export async function getCaptcha() {
+export async function getCaptcha(): Promise<ApiResponse<{ captcha: string }>> {
   const { data, text } = SvgCaptchaFactory.create({
     size: 5,
     color: true,
@@ -27,8 +28,11 @@ export async function getCaptcha() {
   captchaMap.set(text, dayjs().format());
 
   return {
-    code: 1000,
-    captcha: svgToBase64(data),
+    success: true,
+    data: {
+      captcha: svgToBase64(data),
+    },
+    message: "验证码生成成功",
   };
 }
 
@@ -50,16 +54,27 @@ export function clearExpiredCaptcha(m: number) {
  * 验证验证码的有效性
  * @param expired 验证码过期时间（分钟）
  * @param text 验证码文本
- * @throws {Error} 当验证码不存在或已经过期时抛出错误
- * @returns 如果验证码有效，返回 true；否则返回 false
+ * @returns 验证结果
  */
-export function verifyCaptcha(expired: number, text: string) {
+export function verifyCaptcha(
+  expired: number,
+  text: string,
+): ApiResponse<boolean> {
   const offsetTime = dayjs().diff(captchaMap.get(text), "minute");
 
   if (offsetTime < expired && captchaMap.get(text)) {
-    return true;
+    return {
+      success: true,
+      data: true,
+      message: "验证码验证通过",
+    };
   } else {
-    return false;
+    return {
+      success: false,
+      data: false,
+      message: "验证码无效或已过期",
+      errorCode: 1001,
+    };
   }
 }
 

@@ -1,23 +1,3 @@
-import { Elysia } from "elysia";
-import { staticPlugin } from "@elysiajs/static";
-import setup from "./setup";
-import IntegrationPlugin from "@/routes/all.routes";
-import ignoreAuthPath from "./utils/ignore-auth-path";
+import { startServer } from "@/bootstrap/server";
 
-const PORT = Bun.env.SERVER_PORT || 7777;
-
-new Elysia()
-  .use(setup)
-  .use(staticPlugin())
-  .derive(({ headers }) => {
-    const auth = headers["authorization"];
-    return {
-      bearer: auth?.startsWith("Bearer ") ? auth.slice(7) : null,
-    };
-  })
-  .onBeforeHandle(ignoreAuthPath)
-  .get("/", () => "Hello Elysia")
-  .use(IntegrationPlugin)
-  .listen(PORT, () =>
-    console.log(`Server is running on http://localhost:${PORT}`),
-  );
+startServer();

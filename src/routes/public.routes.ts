@@ -3,9 +3,9 @@ import { cron } from "@elysiajs/cron";
 
 import { getCaptcha, clearExpiredCaptcha } from "@/controllers/public/captcha";
 import {
-  getCodeCaptcha,
+  getEmailCaptcha,
   clearExpiredCodeCaptcha,
-} from "@/controllers/public/codeCaptcha";
+} from "@/controllers/public/emailCaptcha";
 import { publicModels } from "@/models/public.model";
 
 const plugin = new Elysia({ prefix: "/public" })
@@ -21,6 +21,6 @@ const plugin = new Elysia({ prefix: "/public" })
     }),
   )
   .get("/getCaptcha", getCaptcha)
-  .get("/getCodeCaptcha", getCodeCaptcha, { query: "getCodeCaptcha.query" });
+  .get("/getCodeCaptcha", getEmailCaptcha, { query: "getCodeCaptcha.query" });
 
 export default plugin;
