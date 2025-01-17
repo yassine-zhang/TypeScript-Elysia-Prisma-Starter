@@ -1,80 +1,110 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>邮箱验证码</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知慧flow - 验证您的邮箱</title>
     <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 20px;
-        border: 1px solid #dddddd;
-        border-radius: 4px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      .header {
-        font-size: 16px;
-        font-weight: bold;
-        color: #333333;
-      }
-      .content {
-        font-size: 14px;
-        color: #333333;
-        line-height: 1.6;
-        margin-top: 20px;
-      }
-      .content strong {
-        font-size: 22px;
-        color: #008000;
-      }
-      .footer {
-        margin-top: 30px;
-        font-size: 12px;
-        color: #777777;
-        text-align: left;
-      }
-      .footer a {
-        color: #0066cc;
-        text-decoration: none;
-      }
-      @media screen and (max-width: 600px) {
+        /* 重置样式 */
+        body, p, div, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+        }
+        /* 主体样式 */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .email-box {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo img {
+            height: 40px;
+        }
         .header {
-          font-size: 14px; /* Smaller font size for mobile */
+            margin-bottom: 30px;
         }
-        .content {
-          font-size: 12px; /* Smaller font size for mobile */
+        .title {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
         }
-        .content strong {
-          font-size: 18px; /* Smaller font size for mobile */
+        .code-box {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .code {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3b82f6;
+            letter-spacing: 4px;
+        }
+        .notice {
+            font-size: 14px;
+            color: #666;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
         .footer {
-          font-size: 10px; /* Adjust footer size for mobile */
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
         }
-      }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="header">{{USERNAME}}，你好：</div>
-      <div class="content">
-        <p>
-          你申请绑定邮箱的邮件验证码为：<strong>{{OTP}}</strong>，该验证码15分钟内有效。
-        </p>
-        <p>如果该修改邮箱邮件并不是由你主动从知慧flow请求发出，请忽略！</p>
-      </div>
-      <div class="footer">
-        <p>知慧flow - 知识“慧”聚成河，意义自然浮现</p>
-        <p><a href="https://wisflow.itcox.cn">https://wisflow.itcox.cn</a></p>
-      </div>
+        <div class="email-box">
+            <div class="logo">
+                <!-- 这里可以放置您的logo -->
+                <h1 style="color: #3b82f6;">知慧flow</h1>
+            </div>
+            
+            <div class="header">
+                <h2 class="title">验证您的邮箱</h2>
+                <p>亲爱的 {{USERNAME}}，</p>
+                <p>感谢您注册知慧flow！请使用以下验证码完成邮箱验证：</p>
+            </div>
+
+            <div class="code-box">
+                <div class="code">{{OTP}}</div>
+            </div>
+
+            <p>验证码将在10分钟内有效。如果您没有进行此操作，请忽略此邮件。</p>
+
+            <div class="notice">
+                <p>为了保障您的账号安全：</p>
+                <ul>
+                    <li>请勿将验证码泄露给他人</li>
+                    <li>本邮件由系统自动发送，请勿回复</li>
+                </ul>
+            </div>
+
+            <div class="footer">
+                <p>© 2024 - {{YEAR}} 知慧flow. 保留所有权利。</p>
+            </div>
+        </div>
     </div>
-  </body>
-</html>
+</body>
+</html> 

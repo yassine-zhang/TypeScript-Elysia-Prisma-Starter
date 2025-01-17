@@ -1,7 +1,7 @@
 import { Elysia, t } from "elysia";
 
 export const publicModels = new Elysia().model({
-  "getCodeCaptcha.query": t.Object({
+  getEmailCaptcha: t.Object({
     address: t.String({
       format: "email",
       error: "请输入正确的邮箱格式",

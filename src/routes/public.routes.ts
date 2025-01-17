@@ -4,7 +4,7 @@ import { cron } from "@elysiajs/cron";
 import { getCaptcha, clearExpiredCaptcha } from "@/controllers/public/captcha";
 import {
   getEmailCaptcha,
-  clearExpiredCodeCaptcha,
+  clearExpiredEmailCaptcha,
 } from "@/controllers/public/emailCaptcha";
 import { publicModels } from "@/models/public.model";
 
@@ -16,11 +16,11 @@ const plugin = new Elysia({ prefix: "/public" })
       pattern: "*/5 * * * *",
       run() {
         clearExpiredCaptcha(5);
-        clearExpiredCodeCaptcha(15);
+        clearExpiredEmailCaptcha(10);
       },
     }),
   )
-  .get("/getCaptcha", getCaptcha)
-  .get("/getCodeCaptcha", getEmailCaptcha, { query: "getCodeCaptcha.query" });
+  .get("/captcha", getCaptcha)
+  .get("/emailCaptcha", getEmailCaptcha, { query: "getEmailCaptcha" });
 
 export default plugin;

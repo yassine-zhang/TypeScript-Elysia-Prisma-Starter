@@ -1,15 +1,8 @@
 import { expect, test } from "bun:test";
-import { sendEmail } from "./email-sender";
+import { sendVerificationEmail } from "./email-sender";
 
-test("Test sending a rich text email.", async () => {
-  let html = await Bun.file("./src/emails/register.html").text();
-  html = html.replace("{{USERNAME}}", "yassine");
-  html = html.replace("{{OTP}}", "397678");
+test("Test sending a verification email.", async () => {
   expect(
-    await sendEmail(
-      "business@itcox.cn",
-      "【产品名】 - 邮箱验证码(test-mode)",
-      html,
-    ),
+    await sendVerificationEmail("business@itcox.cn", "yassine", "397678"),
   ).toBe(true);
 });

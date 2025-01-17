@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
-import IntegrationPlugin from "@/routes/all.routes";
+import globalRouterPlugin from "@/routes/all.routes";
 import authWhitelist from "@/bootstrap/auth-whitelist";
 import { errorHook, createAuthHook } from "@/hooks";
 import { cors } from "@elysiajs/cors";
@@ -13,15 +13,7 @@ import utc from "dayjs/plugin/utc";
 dayjs.locale("zh-cn");
 dayjs.extend(utc);
 
-console.log("提示[./src/bootstrap/app.ts]：记得修改Cors.origin");
-
-const ClientAddrs = [
-  "http://localhost:5173",
-  "http://172.20.10.3:5173",
-  "https://example.com",
-];
-
-const PORT = Bun.env.SERVER_PORT || 7777;
+const ClientAddrs = ["http://localhost:5173", "http://172.20.10.3:5173"];
 
 export const createApp = () => {
   const app = new Elysia()
@@ -36,7 +28,7 @@ export const createApp = () => {
     .use(
       jwt({
         name: "jwt",
-        secret: "CA8F06487400A37AE4605CC6754F4A93B9CD4995",
+        secret: Bun.env.JWT_SECRET as string,
         exp: "7d",
       }),
     )
@@ -44,7 +36,7 @@ export const createApp = () => {
     .use(createAuthHook)
     .onBeforeHandle(authWhitelist)
     .get("/", () => "Hello Elysia")
-    .use(IntegrationPlugin);
+    .use(globalRouterPlugin);
 
   return app;
 };

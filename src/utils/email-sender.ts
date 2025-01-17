@@ -1,14 +1,14 @@
 import axios from "axios";
 
 /**
- * 发送邮件
+ * 发送原始邮件
  *
  * @param to 收件人邮箱地址
  * @param subject 邮件主题
  * @param html 邮件内容（HTML格式）
  * @returns 发送是否成功
  */
-export async function sendEmail(
+export async function sendRawEmail(
   to: string,
   subject: string,
   html: string,
@@ -54,4 +54,31 @@ export async function sendEmail(
    */
 
   return response.data.message === "OK";
+}
+
+interface EmailTemplateData {
+  USERNAME: string;
+  OTP: string;
+  YEAR: string;
+}
+
+export async function sendVerificationEmail(
+  to: string,
+  username: string,
+  otp: string,
+): Promise<boolean> {
+  const templateData: EmailTemplateData = {
+    USERNAME: username,
+    OTP: otp,
+    YEAR: new Date().getFullYear().toString(),
+  };
+
+  let html = await Bun.file("./src/emails/register.html").text();
+
+  // 替换所有模板变量
+  Object.entries(templateData).forEach(([key, value]) => {
+    html = html.replace(`{{${key}}}`, value);
+  });
+
+  return sendRawEmail(to, "知慧flow - 用户注册邮箱验证码", html);
 }
