@@ -15,6 +15,11 @@
 │ ├── routes/ # 路由定义
 │ ├── types/ # TypeScript 类型定义
 │ └── utils/ # 工具函数
+│   └── pay/ # 支付相关工具函数
+│       └── ltzf/ # 蓝兔支付接口实现
+│           ├── sign.ts # 签名验证
+│           ├── notify.ts # 支付通知处理
+│           └── wx.ts # 微信支付实现
 ├── prisma/ # Prisma ORM 相关
 └── public/ # 静态资源目录
 ```
@@ -41,13 +46,20 @@
 - HTML 邮件模板支持
 - 验证码邮件功能
 
-4. **API 路由**
+4. **支付系统**
+
+- 蓝兔付接口集成
+- 微信支付支持
+- 支付通知处理
+- 签名验证机制
+
+5. **API 路由**
 
 - RESTful API 设计
 - 路由前缀管理
 - 统一的错误处理
 
-5. **开发工具链**
+6. **开发工具链**
 
 - Prettier 代码格式化
 - Husky Git hooks
@@ -106,6 +118,7 @@ interface ApiResponse<T> {
 - JWT 认证
 - 验证码机制
 - 环境变量加密
+- 支付签名验证
 
 这是一个结构完善的后端项目框架，适合作为中小型项目的起点。它提供了常见的基础设施和最佳实践，同时保持了良好的可扩展性。
 
@@ -126,6 +139,12 @@ bun install
 1. DATABASE_URL： 数据库连接字符串，请根据你的数据库类型，修改此字符串，他在`prisma/schema.prisma`中被引用。
 2. SERVER_PORT： 服务端口，请根据你的需要，修改此端口。
 3. EMAIL：发送功能依赖于ZeptoMail，请先在ZeptoMail注册账号，并添加你的API Token以及其他信息。你也可以移除此模块，使用你自己的邮件发送服务，文件位置：`src/utils/email-sender.ts`。
+4. 支付相关配置：
+   - LTZF_MCH_ID：蓝兔支付商户ID
+   - LTZF_MCH_SECRET：蓝兔支付商户密钥
+   - LTZF_NOTIFY_URL：支付通知回调地址
+   - LTZF_QUIT_URL：支付取消回调地址
+   - LTZF_RETURN_URL：支付完成返回地址
 
 ### 加密和解密说明
 
