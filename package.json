@@ -17,8 +17,8 @@
     "decrypt-dev": "dotenvx decrypt -f .env.development",
     "decrypt-prod": "dotenvx decrypt -f .env.production",
     "dotenvx-help": "sh -c 'echo \"Current dotenvx version number: $(dotenvx --version)\" && dotenvx help'",
-    "migrate-dev": "prisma migrate dev --name",
-    "migrate-depl": "prisma migrate deploy"
+    "migrate-dev": "dotenvx run -f .env .env.development -- prisma migrate dev --name",
+    "migrate-depl": "dotenvx run -f .env .env.production -- prisma migrate deploy"
   },
   "devDependencies": {
     "@types/bun": "^1.1.12",
