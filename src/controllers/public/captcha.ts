@@ -25,7 +25,7 @@ export async function getCaptcha(): Promise<ApiResponse<{ captcha: string }>> {
     background: "#bef853",
   });
 
-  captchaMap.set(text, dayjs().format());
+  captchaMap.set(text.toLowerCase(), dayjs().format());
 
   return {
     success: true,
