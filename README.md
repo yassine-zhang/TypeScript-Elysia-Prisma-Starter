@@ -1,8 +1,8 @@
-# typescript-elysia-prisma-starter
+# 🚀 typescript-elysia-prisma-starter
 
 这是一个基于 Bun + Elysia + Prisma 的后端项目框架。
 
-## 主要目录结构
+## 📁 主要目录结构
 
 ```markdown
 .
@@ -15,18 +15,18 @@
 │ ├── routes/ # 路由定义
 │ ├── types/ # TypeScript 类型定义
 │ └── utils/ # 工具函数
-│   └── pay/ # 支付相关工具函数
-│       └── ltzf/ # 蓝兔支付接口实现
-│           ├── sign.ts # 签名验证
-│           ├── notify.ts # 支付通知处理
-│           └── wx.ts # 微信支付实现
+│ └── pay/ # 支付相关工具函数
+│ └── ltzf/ # 蓝兔支付接口实现
+│ ├── sign.ts # 签名验证
+│ ├── notify.ts # 支付通知处理
+│ └── wx.ts # 微信支付实现
 ├── prisma/ # Prisma ORM 相关
 └── public/ # 静态资源目录
 ```
 
-## 核心功能模块
+## ✨ 核心功能模块
 
-1. **认证系统**
+1. **认证系统** 🔐
 
 - JWT 认证实现 (`@elysiajs/jwt`)
 - 路由白名单机制 (`auth-whitelist.ts`)
@@ -34,57 +34,57 @@
   - 图形验证码 (`captcha.ts`)
   - 邮箱验证码 (`emailCaptcha.ts`)
 
-2. **数据库集成**
+2. **数据库集成** 🗄️
 
 - 使用 Prisma ORM
 - PostgreSQL 数据库支持
 - 自动时区设置为上海时区
 
-3. **邮件系统**
+3. **邮件系统** 📧
 
 - 基于 ZeptoMail 的邮件发送
 - HTML 邮件模板支持
 - 验证码邮件功能
 
-4. **支付系统**
+4. **支付系统** 💸
 
 - 蓝兔付接口集成
 - 微信支付支持
 - 支付通知处理
 - 签名验证机制
 
-5. **API 路由**
+5. **API 路由** 🛣️
 
 - RESTful API 设计
 - 路由前缀管理
 - 统一的错误处理
 
-6. **开发工具链**
+6. **开发工具链** 🛠️
 
 - Prettier 代码格式化
 - Husky Git hooks
 - dotenvx 环境变量管理
 - TypeScript 支持
 
-## 特色功能
+## 💡 特色功能
 
-1. **环境变量管理**
+1. **环境变量管理** ⚙️
 
 - 支持开发和生产环境配置
 - 环境变量加密功能
 - dotenvx 集成
 
-2. **定时任务**
+2. **定时任务** ⏰
 
 - 使用 `@elysiajs/cron` 实现
 - 验证码清理等维护任务
 
-3. **Docker 支持**
+3. **Docker 支持** 🐳
 
 - 完整的 Dockerfile 配置
 - 多平台构建支持
 
-4. **统一响应格式**
+4. **统一响应格式** 📄
 
 ```typescript
 interface ApiResponse<T> {
@@ -95,25 +95,25 @@ interface ApiResponse<T> {
 }
 ```
 
-## 技术栈亮点
+## 🌟 技术栈亮点
 
-1. **现代化运行时**
+1. **现代化运行时** ⚡
 
 - 使用 Bun 作为 JavaScript/TypeScript 运行时
 - 高性能特性
 
-2. **类型安全**
+2. **类型安全** 🛡️
 
 - 完整的 TypeScript 支持
 - 自定义类型定义
 
-3. **开发体验**
+3. **开发体验** 👩‍💻
 
 - 热重载支持
 - 完整的开发工具链
 - 统一的代码风格
 
-4. **安全性**
+4. **安全性** 🔐
 
 - JWT 认证
 - 验证码机制
@@ -122,9 +122,9 @@ interface ApiResponse<T> {
 
 这是一个结构完善的后端项目框架，适合作为中小型项目的起点。它提供了常见的基础设施和最佳实践，同时保持了良好的可扩展性。
 
-## 使用说明
+## 📖 使用说明
 
-### 安装依赖
+### 📦 安装依赖
 
 > 本项目使用 bun v1.1.21 通过 `bun init` 创建。[Bun](https://bun.sh) 是一个快速的全能 JavaScript 运行时。
 
@@ -132,7 +132,7 @@ interface ApiResponse<T> {
 bun install
 ```
 
-### 环境变量
+### 🔒 环境变量
 
 项目采用dotenvx管理环境变量，你在拉取此项目后，请先修改`.env.development`和`.env.production`文件，添加你的环境变量。
 
@@ -146,7 +146,7 @@ bun install
    - LTZF_QUIT_URL：支付取消回调地址
    - LTZF_RETURN_URL：支付完成返回地址
 
-### 加密和解密说明
+### 🔑 加密和解密说明
 
 注意：请不要将环境变量以明文的形式上传到公开仓库，你可使用`bun run encrypt-dev/encrypt-prod`命令，加密`.env.development/.env.production`文件。
 
@@ -154,15 +154,15 @@ bun install
 
 [dotenvx文档](https://dotenvx.com/)
 
-### Git 提交代码格式化
+### 📝 Git 提交代码格式化
 
 运行以下命令安装husky
 
 ```bash
-bun run prepare-fallback
+bun run prepare:fallback
 ```
 
-### Prisma 配置
+### 🐘 Prisma 配置
 
 请先在`prisma/schema.prisma`中创建model，如下：
 
@@ -180,13 +180,13 @@ model User {
 
 > 关于binaryTargets的更多信息，请参考[Prisma文档](https://www.prisma.io/docs/orm/overview/prisma-schema-file-structure/prisma-schema-file-structure#binarytargets)。
 
-### 运行项目
+### ▶️ 运行项目
 
 ```bash
 bun run dev
 ```
 
-### 构建 Docker 镜像
+### 🐳 构建 Docker 镜像
 
 构建Docker镜像：
 
