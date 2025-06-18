@@ -41,9 +41,9 @@ export async function getEmailCaptcha({
   );
 
   return {
-    success: true,
     data: null,
-    message: "success",
+    msg: "success",
+    code: 200,
   };
 }
 

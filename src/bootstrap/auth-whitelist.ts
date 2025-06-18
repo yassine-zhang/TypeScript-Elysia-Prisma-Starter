@@ -40,10 +40,9 @@ export default async function ({
     if (!bearer) {
       set.status = 401;
       return {
-        success: false,
         data: null,
-        errorCode: 1001,
-        message: "请传入自定义header -> authorization: Bearer { token }",
+        code: 1201,
+        msg: "请传入自定义header -> authorization: Bearer { token }",
       };
     }
     if (bearer) {
@@ -53,10 +52,9 @@ export default async function ({
       if (!payload) {
         set.status = 401;
         return {
-          success: false,
           data: null,
-          errorCode: 1002,
-          message: "已传入authorization参数，但验证不通过！",
+          code: 1202,
+          msg: "已传入authorization参数，但验证不通过！",
         };
       }
     }
