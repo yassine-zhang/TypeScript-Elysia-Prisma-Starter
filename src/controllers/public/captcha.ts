@@ -28,11 +28,11 @@ export async function getCaptcha(): Promise<ApiResponse<{ captcha: string }>> {
   captchaMap.set(text.toLowerCase(), dayjs().format());
 
   return {
-    success: true,
     data: {
       captcha: svgToBase64(data),
     },
-    message: "验证码生成成功",
+    msg: "验证码生成成功",
+    code: 200,
   };
 }
 
@@ -64,16 +64,15 @@ export function verifyCaptcha(
 
   if (offsetTime < expired && captchaMap.get(text)) {
     return {
-      success: true,
       data: true,
-      message: "验证码验证通过",
+      msg: "验证码验证通过",
+      code: 200,
     };
   } else {
     return {
-      success: false,
       data: false,
-      message: "验证码无效或已过期",
-      errorCode: 1001,
+      msg: "验证码无效或已过期",
+      code: 1101,
     };
   }
 }
